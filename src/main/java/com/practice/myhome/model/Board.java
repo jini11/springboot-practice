@@ -10,7 +10,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
-@Data //getter, setter
+@Data
 public class Board {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
