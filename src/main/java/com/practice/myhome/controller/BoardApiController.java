@@ -4,6 +4,7 @@ import com.practice.myhome.model.Board;
 import com.practice.myhome.repository.BoardRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.thymeleaf.util.StringUtils;
 
 import java.util.List;
 
@@ -15,8 +16,14 @@ class BoardApiController {
     private BoardRepository repository;
 
     @GetMapping("/boards")
-    List<Board> all() {
-        return repository.findAll();
+    List<Board> all(@RequestParam(required = false, defaultValue = "") String title,
+        @RequestParam(required = false, defaultValue = "") String content) {
+        if(StringUtils.isEmpty(title) && StringUtils.isEmpty(content)) {
+            return repository.findAll();
+        } else {
+            return repository.findByTitleOrContent(title, content);
+        }
+
     }
 
     @PostMapping("/boards")
@@ -26,7 +33,6 @@ class BoardApiController {
 
     @GetMapping("/boards/{id}")
     Board one(@PathVariable Long id) {
-
         return repository.findById(id).orElse(null);
     }
 
