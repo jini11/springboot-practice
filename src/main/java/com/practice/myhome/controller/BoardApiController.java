@@ -35,12 +35,12 @@ class BoardApiController {
 
         return repository.findById(id)
                 .map(board -> {
-                    board.getTitle(newBoard.getTitle());
-                    board.getContent(newBoard.getContent());
+                    board.setTitle(newBoard.getTitle());
+                    board.setContent(newBoard.getContent());
                     return repository.save(board);
                 })
                 .orElseGet(() -> {
-                    new Board.setId(id);
+                    newBoard.setId(id);
                     return repository.save(newBoard);
                 });
     }
