@@ -22,8 +22,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
+                .csrf().disable()
+                // 보안체크를 하지 않는다는 의미 --> 실제 홈페이지에서는 위험(여기선 테스트를 위해)
                 .authorizeRequests()
-                    .antMatchers("/", "/account/register", "/css/**").permitAll()
+                    .antMatchers("/", "/account/register", "/css/**", "/api/**").permitAll()
                     .anyRequest().authenticated()
                     .and()
                 .formLogin()
