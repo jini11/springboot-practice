@@ -1,5 +1,6 @@
 package com.practice.myhome.repository;
 
+import com.practice.myhome.model.QUser;
 import com.practice.myhome.model.User;
 import com.querydsl.jpa.impl.JPAQuery;
 import org.springframework.beans.factory.annotation.Autowired;
